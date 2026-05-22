@@ -1,11 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GestionRoute : MonoBehaviour
-
-
-
-
-
 {
 
     public string intro = "Intro";
@@ -18,6 +13,8 @@ public class GestionRoute : MonoBehaviour
     public AudioClip SonEchec;
     public AudioClip SonVictoire;
     public AudioClip SonMusique;
+    public AudioClip Bravo;
+    public AudioClip Instructions;
 
     AudioSource audiosource;
 
@@ -33,16 +30,22 @@ public class GestionRoute : MonoBehaviour
         anim = GetComponent<Animator>();
         audiosource = GetComponent<AudioSource>();
 
+        if (Instructions != null)
+            audiosource.PlayOneShot(Instructions);
+
     }
 
     // Update is called once per frame
     public void AuClicVictoire()
     {
-
+        audiosource.Stop();
         PanneauVictoire.SetActive(true);
 
         audiosource.PlayOneShot(SonVictoire);
-        Invoke("RedemarrerScene", 2f);
+        audiosource.PlayOneShot(Bravo);
+
+
+
 
 
 
@@ -51,8 +54,11 @@ public class GestionRoute : MonoBehaviour
 
     public void AuClicDefaite()
     {
+        audiosource.Stop();
         PanneauDefaite.SetActive(true);
         audiosource.PlayOneShot(SonEchec);
+
+
     }
 
     public void AuDebutSurvol()
@@ -68,9 +74,14 @@ public class GestionRoute : MonoBehaviour
         anim.Play("Idle");
     }
 
-     public void RedemarrerSceneClic()
+    public void RedemarrerSceneClic()
     {
-         SceneManager.LoadScene(intro);
+        SceneManager.LoadScene("Niveau 1");
+    }
+
+    public void NiveauSuivant()
+    {
+        SceneManager.LoadScene("Niveau 2");
     }
 
 

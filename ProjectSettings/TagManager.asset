@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - PanneauDefaite
+  - ZoneBonne
+  - ZoneMauvaise
+  - Barriere
+  - Barriere 1
+  - Arrivee
+  - Obstacle
   layers:
   - Default
   - TransparentFX
